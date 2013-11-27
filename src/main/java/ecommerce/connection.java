@@ -21,15 +21,9 @@ public class connection {
 			System.out.println("SQLException:" + e.getMessage());
 			System.out.println("SQLState" + e.getSQLState());
 			System.out.println("VendoError:" + e.getErrorCode());
-		}finally {
-			close();
 		}
 	}
 
-	private void close() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 	
