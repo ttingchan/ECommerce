@@ -1,4 +1,4 @@
-package pojo;
+package module;
 
 import java.util.List;
 

@@ -1,29 +1,32 @@
-package pojo;
+package module;
 
 import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Entity;
 
 
 @Entity
-@Table(name="user")
-public class User {
-
-	@OneToMany(mappedBy="userId")
-	private List<Comment> comments;
+@Table(name="author")
+public class Author {
+	
+	@OneToMany(mappedBy="authorId",fetch=FetchType.LAZY)
+	private List<Album> cds;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String psw;
 	
-	User(int id, String name, String password)
+	Author(int id, String name)
 	{
 		this.id = id;
 		this.name = name;
-		this.psw = password;
 	}
 	
 	public int getId()
@@ -31,21 +34,17 @@ public class User {
 		return this.id;
 	}
 	
-	public String getName()
+	public String getname()
 	{
 		return this.name;
 	}
 	
-	public String getPsw()
-	{
-		return this.psw;
-	}
-	
 	@Override
-	public int hashCode(){
-		return Objects.hash(this.id,this.name,this.psw) ;
+	public int hashCode()
+	{
+		return Objects.hash(id,name);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -58,10 +57,9 @@ public class User {
 		{
 			return false;
 		}
-		final User other = (User)obj;
+		final Author other = (Author)obj;
+		
 		return Objects.equals(this.id, other.id)
-				&& Objects.equals(this.name, other.name)
-				&& Objects.equals(this.psw, other.psw); 
-						
+				&& Objects.equals(this.name, other.name);
 	}
 }

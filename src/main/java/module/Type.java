@@ -1,10 +1,12 @@
-package pojo;
+package module;
 
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,6 +24,7 @@ public class Type {
 			inverseJoinColumns ={@JoinColumn(name="id", nullable = false, updatable =false)})
 	private List<Song> songs;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String type;
 	
